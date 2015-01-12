@@ -1,4 +1,4 @@
-package actorthread
+package hello
 
 object HelloWorld {
   def main(args: Array[String]) = {

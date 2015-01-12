@@ -1,4 +1,4 @@
-package actorthread
+package actorthread.v2
 
 import akka.actor.ActorLogging
 import akka.actor.Actor
