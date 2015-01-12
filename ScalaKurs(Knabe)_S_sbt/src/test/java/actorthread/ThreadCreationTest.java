@@ -22,7 +22,7 @@ public class ThreadCreationTest {
 		@Override
 		public void run() {
 			try {
-				sleep(120000);
+				sleep(6000000); // 10 minutes
 			} catch (InterruptedException e) {}
 		}
 	}
