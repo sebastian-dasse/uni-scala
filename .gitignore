@@ -18,7 +18,7 @@ project/plugins/project/
 .scala_dependencies
 .worksheet
 
-# Eclipse specific
-.settings/
-.classpath
-.cache
+# DO NOT (!) gitignore the following:
+# .settings/
+# .classpath
+# .cache
