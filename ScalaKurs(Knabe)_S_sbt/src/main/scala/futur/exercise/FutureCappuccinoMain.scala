@@ -37,9 +37,6 @@ object FutureCappuccinoMain extends App {
 	  slowly("brewing"){"espresso"}
 	}
 	
-//	def combine(espresso: Espresso, frothedMilk: FrothedMilk) = "cappuccino"
-//	  "cappuccino"
-//	}
 	def combine(espresso: Espresso, frothedMilk: FrothedMilk) = Future[String] {
 	  slowly("combining"){"cappuccino"}
 	}
