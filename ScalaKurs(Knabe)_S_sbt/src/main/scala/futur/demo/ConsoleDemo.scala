@@ -1,4 +1,4 @@
-package futur
+package futur.demo
 
 object ConsoleDemo {
   def main(args: Array[String]) {
@@ -6,14 +6,14 @@ object ConsoleDemo {
 	
 	val map = scala.collection.mutable.Map[String, Long]()
 	for (action <- List("grind", "heat", "froth", "brew", "combine")) {
-	  readLine(s"$action")
+	  readLine(s"$action delay")
 	  val start = System.currentTimeMillis
 	  readLine
 	  map(action) = System.currentTimeMillis - start
 	}
     
-    for (elem <- map) println(elem)
-//    for (elem <- map.toSeq.sortWith(_._1 < _._1)) println(elem)
+//    for (elem <- map) println(elem)
+    for (elem <- map.toSeq.sortWith(_._1 < _._1)) println(elem)
     
   }
 }
