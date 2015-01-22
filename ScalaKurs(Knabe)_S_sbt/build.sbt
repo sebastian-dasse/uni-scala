@@ -6,7 +6,8 @@ lazy val root = (project in file(".")).
     scalacOptions ++= Seq("-encoding", "UTF-8"),
     libraryDependencies ++= Seq(
       //vendor % artifact % version % scope
-      "junit" % "junit" % "4.8.1" % "test",
+      //"junit" % "junit" % "4.8.1" % "test",
+      "junit" % "junit" % "4.11" % "test",
       //vendor %% scalaVersionDependentArtifact % ownVersion % scope
       "org.scalatest" %% "scalatest" % "2.2.1" % "test",
       // Akka
