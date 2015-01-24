@@ -34,20 +34,20 @@ class FutureCombineImpl extends FutureCombine {
     val promise: Promise[Seq[T]] = Promise()
     var completedCount: Int = 0
     var successCount: Int = 0
-    def completeWhenAllFuturesAreComplete: Unit = {
+    def completePromiseWhenAllFuturesAreCompleted: Unit = {
       completedCount += 1
       if (completedCount == futures.length) {
 //        promise.complete{ Try{ futures.map(fut => Await.result(fut, 50.milliseconds)) } }
-        promise.completeWith{ Future(futures.map(fut => Await.result(fut, 0.milliseconds))) }
+        promise.completeWith{ Future(futures.map(fut => Await.result(fut, 50.milliseconds))) }
       }
     }
     for (future <- futures) {
       future.onComplete{
         case Success(_) =>
           successCount += 1
-          completeWhenAllFuturesAreComplete
+          completePromiseWhenAllFuturesAreCompleted
     	case Failure(exc) =>
-          completeWhenAllFuturesAreComplete
+          completePromiseWhenAllFuturesAreCompleted
     	  throw exc
       }
     }
