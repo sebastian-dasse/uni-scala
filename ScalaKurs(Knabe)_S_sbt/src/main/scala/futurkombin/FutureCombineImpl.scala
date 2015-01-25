@@ -38,7 +38,7 @@ class FutureCombineImpl extends FutureCombine {
       completedCount += 1
       if (completedCount == futures.length) {
 //        promise.complete{ Try{ futures.map(fut => Await.result(fut, 50.milliseconds)) } }
-        promise.completeWith{ Future(futures.map(fut => Await.result(fut, 50.milliseconds))) }
+        promise.completeWith{ Future(futures.map(fut => Await.result(fut, 100.milliseconds))) }
       }
     }
     for (future <- futures) {
