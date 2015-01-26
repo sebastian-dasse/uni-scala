@@ -21,7 +21,7 @@ class FutureCombineImpl extends FutureCombine {
     val promise: Promise[T] = Promise()
     for (future <- futures) {
       future.onComplete {
-        case _ if !promise.isCompleted => promise.completeWith(future)
+        case _ => promise.tryCompleteWith(future)
       }
     }
     promise.future
@@ -32,23 +32,16 @@ class FutureCombineImpl extends FutureCombine {
    * versagt auch die gelieferte Future mit einer Exception. */
   def allOf[T](futures: Seq[Future[T]]): Future[Seq[T]] = {
     val promise: Promise[Seq[T]] = Promise()
-    var completedCount: Int = 0
     var successCount: Int = 0
-    def completePromiseWhenAllFuturesAreCompleted: Unit = {
-      completedCount += 1
-      if (completedCount == futures.length) {
-//        promise.complete{ Try{ futures.map(fut => Await.result(fut, 50.milliseconds)) } }
-        promise.completeWith{ Future(futures.map(fut => Await.result(fut, 100.milliseconds))) }
-      }
-    }
     for (future <- futures) {
       future.onComplete{
         case Success(_) =>
           successCount += 1
-          completePromiseWhenAllFuturesAreCompleted
+          if (successCount == futures.length) {
+            promise.trySuccess(futures.map(fut => Await.result(fut, 0.seconds)))
+          }
     	case Failure(exc) =>
-          completePromiseWhenAllFuturesAreCompleted
-    	  throw exc
+    	  promise.tryFailure( exc )
       }
     }
     promise.future
