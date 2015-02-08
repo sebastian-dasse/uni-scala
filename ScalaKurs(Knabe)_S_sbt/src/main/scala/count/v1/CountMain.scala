@@ -1,4 +1,4 @@
-package count
+package count.v1
 
 import akka.actor.ActorSystem
 import akka.actor.Actor

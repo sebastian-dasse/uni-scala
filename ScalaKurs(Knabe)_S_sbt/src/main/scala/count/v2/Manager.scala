@@ -1,4 +1,4 @@
-package count
+package count.v2
 
 import akka.actor.Actor
 import akka.actor.ActorLogging

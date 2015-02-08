@@ -1,4 +1,4 @@
-package probeklausur
+package probeklausur.v1
 
 import org.junit.Assert._
 import org.junit.Test
